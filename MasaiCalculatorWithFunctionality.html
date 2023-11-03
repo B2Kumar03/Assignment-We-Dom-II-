@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        #container{
+            height: 500px;
+            width: 450px;
+            margin: auto;
+            /* border: 1px solid red; */
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4,80px);
+            grid-template-rows: repeat(5,80px);
+            /* padding: 50px; */
+            justify-content: center;
+            padding-top: 100px;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        h1{
+            text-align: center;
+        }
+
+        #container >div{
+            /* border: 1px solid blue; */
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color: #e6e6e6;
+            border-radius: 10px;
+        }
+        .boxResult{
+            grid-column-start: 1;
+            grid-column-end: 5;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius: 10px;
+        }
+        button{
+            width: 99%;
+            height: 99%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+        }
+         .classPluse{
+            background-color: black;
+            color: white;
+            cursor: pointer;
+         }
+         .red{
+            background-color: red;
+         }
+         
+         input{
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+            font-size: 40px;
+            text-align: right;
+            text-align: buttom;
+         }
+       
+    button:active {
+        border: 2px solid #007bff;
+  }
+  button:focus {
+    outline: 2px solid #007bff;
+  }
+  p{
+    font-size: 20px;
+    color: #737373;
+  }
+  @media screen and (max-width: 600px) {
+            /* Media query for screens between 400px and 600px */
+            #container {
+                /* Your styles for screens between 400px and 600px */
+                /* For example, you can reduce the width of the container */
+                width: 300px;
+            }
+
+            /* You can add more styles for smaller screens within this media query */
+            /* For example, modify the button styles, font sizes, etc. */
+        }
+    </style>
+</head>
+<body>
+    <!-- <p class="pp">Ans</p> -->
+    <h1 style="font-size: 50px;color: #009999;text-align: center;margin-top: 40px;">Masai Calculator</h1>
+    <div id="container">
+        <div class="boxResult"><input type="text" name="" id="inputBox" placeholder="0"></div>
+        <div class="numberClass">
+            <button>1</button>
+        </div>
+        <div class="numberClass">
+            <button>2</button>
+        </div>
+        <div class="numberClass">
+            <button>3</button>
+        </div>
+        <div class="operatorButton">
+            <button class="classPluse" >+</button>
+        </div>
+        <div class="numberClass">
+            <button >4</button>
+        </div>
+        <div class="numberClass">
+            <button>5</button>
+        </div>
+        <div class="numberClass">
+            <button>6</button>
+        </div>
+        <div class="operatorButton">
+            <button class="classPluse" >-</button>
+        </div>
+        <div class="numberClass">
+            <button>7</button>
+        </div>
+        <div class="numberClass">
+            <button>8</button>
+        </div>
+        <div class="numberClass">
+            <button>9</button>
+        </div>
+        <div class="operatorButton">
+            <button class="classPluse" >*</button>
+        </div>
+        <div >
+            <button  class="red" onclick="clear1()" >C</button>
+        </div>
+        <div class="numberClass">
+            <button>0</button>
+        </div>
+        <div>
+            <button class="classPluse" onclick="str1()">=</button>
+        </div>
+        <div class="operatorButton">
+            <button class="classPluse" >/</button>
+        </div>
+           
+    </div>
+    
+</body>
+</html>
+<script>
+    var str=""
+    var input=document.getElementById('inputBox')
+    var operator=document.querySelectorAll('.operatorButton >button')
+    var numberr=document.querySelectorAll('.numberClass>button')
+
+  
+    for(var i=0;i<operator.length;i++){
+        
+        operator[i].addEventListener('click',function(event){
+            if(str[str.length-1]=='+' || str[str.length-1]=='-' || str[str.length-1]=='*' || str[str.length-1]=='/' || input.value==0 || str.length==0){
+                alert('Invalid operation: Cannot use multiple operators in a row.');
+              }
+            else{
+                input.value=event.target.innerText
+                str+=event.target.innerText
+                input.value=str
+            }
+        })
+    }
+    for(var i=0;i<numberr.length;i++){
+            numberr[i].addEventListener('click',function(event){
+            input.value=event.target.innerText
+            str+=event.target.innerText
+            input.value=str
+        })
+        }
+   if(str.length==30){
+            input.style.font='10'+'px'
+    }
+    function str1(){
+        if(str.length==0){
+            alert('Invalid operation: Cannot use multiple operators in a row.\n or You can not seen result before expression');
+        }
+        else{
+            
+            const result = eval(str);
+            input.value='Ans-\t\t'+result;
+            str=result 
+        }
+    }
+    function clear1() {
+        str = '';
+        // '0'.style.color='red'
+        input.value = '0';
+        // alert('uuu')
+    }
+
+
+  
+    
+</script>
